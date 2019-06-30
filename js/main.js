@@ -1,8 +1,9 @@
 console.log('Hello JS');
 
 //Players
-const $playerX = [7,3,9];
-const $playerO = [1,4,5,6];
+const $playerX = [];
+const $playerO = [];
+let $move =1; //X starts
 const $winCases = [
     //rows
     [1,2,3],
@@ -21,9 +22,10 @@ const $winCases = [
 
 const myCallback = function(){
     //This should show X or O from css
-    $(this).css({
-        'background': 'gray'
-    })
+    
+    // $(this).css({
+    //     'background': 'gray'
+    // })
     if(checkForWin() === true) //maybe make the board freze if true?
     return console.log('freze code gose here');
     else if(isGameOver() === true)
@@ -31,15 +33,26 @@ const myCallback = function(){
 };
 
 //Create click event for each cell ONLY for once
-for(let i=1; i<=9 ; i++){
-    const $id = $(`#${i}`);
-    //Set data 'clicked' for the clicked cells 
-    $id.click(function(){
-        $(this).data('clicked', true);
-    });
-    $id.one('click', myCallback); 
-};
-
+const start = function(){
+    for(let i=1; i<=9 ; i++){
+        const $id = $(`#${i}`);
+        //Set data 'clicked' for the clicked cells 
+        $id.click(function(){
+            $(this).data('clicked', true);
+            if($move % 2 === 1){
+                $(this).append('X');
+                $playerX.push(i);
+            }
+            else if($move % 2 === 0){
+                $(this).append('O');
+                $playerO.push(i);
+            }
+            $move++;
+        });
+        $id.one('click', myCallback); 
+    };
+}
+start();
 /*------------------------------------------------------------*/
 
 //function to set the Players' arrays
@@ -58,7 +71,11 @@ const checkForWin = function(){
                 if($playerX[j] === $winCases[i][j])
                 $counterX++
             }
-            if($counterX === 3){
+            for(let j = $playerX.length-1; j >= 0; j--){
+                if($playerX[j] === $winCases[i][j])
+                $counterX++
+            }
+            if($counterX === 6){
                 winner('X');
                 return true;
             }
@@ -66,7 +83,11 @@ const checkForWin = function(){
                 if($playerO[k] === $winCases[i][k])
                  $counterO++
             }
-            if($counterO === 3){
+            for(let k = $playerO.length-1; k >= 0; k--){
+                if($playerO[k] === $winCases[i][k])
+                 $counterO++
+            }
+            if($counterO === 6){
                 winner('O');
                 return true;
             }
