@@ -21,13 +21,12 @@ const $winCases = [
 /*------------------------------------------------------------*/
 
 const myCallback = function(){
-    //This should show X or O from css
-    
-    // $(this).css({
-    //     'background': 'gray'
-    // })
-    if(checkForWin() === true) //maybe make the board freze if true?
-    return console.log('freze code gose here');
+    if(checkForWin() === true){
+        for(let i=1; i<=9 ; i++){
+            const $id = $(`#${i}`);
+            $id.off();
+        }
+    }
     else if(isGameOver() === true)
         console.log('Game Over');
 };
@@ -40,11 +39,11 @@ const start = function(){
         $id.click(function(){
             $(this).data('clicked', true);
             if($move % 2 === 1){
-                $(this).append('X');
+                $(this).addClass('x');
                 $playerX.push(i);
             }
             else if($move % 2 === 0){
-                $(this).append('O');
+                $(this).addClass('o');
                 $playerO.push(i);
             }
             $move++;
@@ -55,10 +54,6 @@ const start = function(){
 start();
 /*------------------------------------------------------------*/
 
-//function to set the Players' arrays
-const playersArrays = function(){
-
-}
 
 //function to check for win WHEN any of player's array is equals to 3 or more
 const checkForWin = function(){
@@ -68,33 +63,32 @@ const checkForWin = function(){
         
         for(let i = 0 ; i < $winCases.length; i++){
             for(let j = 0 ; j < $playerX.length; j++){
-                if($playerX[j] === $winCases[i][j])
-                $counterX++
-            }
-            for(let j = $playerX.length-1; j >= 0; j--){
-                if($playerX[j] === $winCases[i][j])
-                $counterX++
-            }
-            if($counterX === 6){
-                winner('X');
-                return true;
-            }
-            for(let k = 0 ; k < $playerO.length; k++){
-                if($playerO[k] === $winCases[i][k])
-                 $counterO++
-            }
-            for(let k = $playerO.length-1; k >= 0; k--){
-                if($playerO[k] === $winCases[i][k])
-                 $counterO++
-            }
-            if($counterO === 6){
-                winner('O');
-                return true;
-            }
-        };
-    };
+                //store the players' index for each iteration to use it with .include() method
+                const index1 = $playerX[j];
+                const index2 = $playerO[j];
+                    if ($winCases[i].includes(index1) === true){
+                        $counterX++;
+                        if($counterX === 3){
+                            winner('X');
+                            return true;
+                        }
+                    } 
+                    else 
+                    if ($winCases[i].includes(index2) === true){
+                        $counterO++; 
+                        if($counterO === 3){
+                            winner('O');
+                            return true;
+                        }
+                    }     
+            }//inner for loop
+        //to make sure that the counter begins with zero for each $winCases[i] iteration
+         $counterX = 0;
+         $counterO = 0;
+        }//for loop
+    }//if
     return false;
-}
+}//function
 
 
 //function to dispaly winner
@@ -104,7 +98,6 @@ const winner = function(win){
     else if(win === 'O')
     console.log('O wins');
 }
-
 
 //finction to check if the game is over
 const isGameOver = function(){
@@ -121,6 +114,18 @@ const isGameOver = function(){
     return true;
 };
 
-$('reset').click(function(){
-    //code here
-});
+// $('reset').click(function(){
+//     //code here
+//     $playerX = [];
+//     $playerO = [];
+//     $move = 0;
+//     for(let i=1; i<=9 ; i++){
+//         const $id = $(`#${i}`);
+//         if($id.data('clicked')){
+//             $id.removeClass('x');
+//             $id.removeClass('o');
+//             $id.data('', false);
+//         }
+//     };
+//     start();
+// });

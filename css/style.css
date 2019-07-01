@@ -20,6 +20,16 @@
     background-repeat: no-repeat;
     background-position: center; 
   }
+  .x{
+    background-image: url("images/x.png");
+    background-size: 90px 90px;
+    background-repeat: no-repeat;
+  }
+  .o{
+    background-image: url("images/o.png");
+    background-size: 90px 90px;
+    background-repeat: no-repeat;
+  }
 
   button{
     background-color: rgb(49, 203, 241);
@@ -31,12 +41,4 @@
     text-align: center;
     text-decoration: none;
     display: inline-block;
-  }
-
-  /* .x{
-    background-image: url(images/x.png);
-    background-size: 30%;
-  } */
-  .btn-group label {
-    cursor: pointer;
   }
