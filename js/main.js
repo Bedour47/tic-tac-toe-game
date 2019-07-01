@@ -1,9 +1,9 @@
 console.log('Hello JS');
 
 //Players
-const $playerX = [];
-const $playerO = [];
-let $move =1; //X starts
+let $playerX = [];
+let $playerO = [];
+let $xTurn = true;
 const $winCases = [
     //rows
     [1,2,3],
@@ -33,20 +33,24 @@ const myCallback = function(){
 
 //Create click event for each cell ONLY for once
 const start = function(){
+    console.log('X turn');
     for(let i=1; i<=9 ; i++){
         const $id = $(`#${i}`);
         //Set data 'clicked' for the clicked cells 
         $id.click(function(){
             $(this).data('clicked', true);
-            if($move % 2 === 1){
+            if($xTurn === true){
                 $(this).addClass('x');
                 $playerX.push(i);
+                $xTurn = false;
+                console.log('O turn');
             }
-            else if($move % 2 === 0){
+            else if($xTurn === false){
                 $(this).addClass('o');
                 $playerO.push(i);
+                $xTurn = true;
+                console.log('X turn');
             }
-            $move++;
         });
         $id.one('click', myCallback); 
     };
@@ -114,18 +118,18 @@ const isGameOver = function(){
     return true;
 };
 
-// $('reset').click(function(){
-//     //code here
-//     $playerX = [];
-//     $playerO = [];
-//     $move = 0;
-//     for(let i=1; i<=9 ; i++){
-//         const $id = $(`#${i}`);
-//         if($id.data('clicked')){
-//             $id.removeClass('x');
-//             $id.removeClass('o');
-//             $id.data('', false);
-//         }
-//     };
-//     start();
-// });
+$('.reset').click(function(){
+    console.log('reset button clicked');
+    $playerX = [];
+    $playerO = [];
+    $xTurn = true;
+    for(let i=1; i<=9 ; i++){
+        const $id = $(`#${i}`);
+        if($id.data('clicked')){
+            $id.removeClass('x');
+            $id.removeClass('o');
+            $id.prop('click', null);
+            $id.data('clicked', false);
+        }
+    };
+});
