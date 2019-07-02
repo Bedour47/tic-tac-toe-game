@@ -120,7 +120,7 @@ const roundWinner = function(win){
 }
 
 //the winner (of all rounds)
-const winner = function(){
+const winner = function(){ //maybe we need to check if the rounds are completed here??
     if($xScore > $oScore)
     $winner = 'X';
     if($xScore < $oScore)
@@ -146,7 +146,7 @@ const isGameOver = function(){
 };
 
 $('.newRound').click(function(){
-    console.log('newRound button clicked');
+    console.log('----------------------');
     $playerX = [];
     $playerO = [];
     $round++;

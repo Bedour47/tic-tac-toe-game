@@ -11,22 +11,37 @@
 </head>
 <body>
     <header>
-            <h1>Tic Tac Toe</h1>
+            <h1 class="deepshadow">Tic Tac Toe</h1>
     </header>
-    <div class="clearfix">
-    <!-- <aside class="leftColumn">
-        <h2>Game board</h2>
-        <div class="round">Round: </div>
-        <div class="roundNumber"></div>
-        <div class="playerX-name">X: </div>
-        <div class="playerX-score">Score: </div>
-        <div class="playerO-name">O: </div>
-        <div class="playerO-score">Score: </div>
-        <div class="winner"></div>
-    </aside> -->
-    <main>
+    <div class="row">
+    <aside class="column left">
+        <h2 class="deepshadow">Game board</h2>
+        <div class="wrapper">
+                <div class="sideRow">
+                    <div class="sideColumn round">Round: </div>
+                    <!-- <div class="sideColumn roundNumber"></div> -->
+                </div>
+                <div class="sideRow">
+                    <div class="sideColumn playerX">X: </div>
+                    <!-- <div class="sideColumn playerX-name"></div> -->
+                </div>
+                <div class="sideRow">
+                    <div class="sideColumn playerX-score">Score: </div>
+                    <!-- <div class="sideColumn playerX-score"></div> -->
+                </div>
+                <div class="sideRow">
+                        <div class="sideColumn playerO">O: </div>
+                        <!-- <div class="sideColumn playerO-name"></div> -->
+                </div>
+                <div class="sideRow">
+                    <div class="sideColumn playerO-score">Score: </div>
+                    <!-- <div class="sideColumn playerO-score"></div> -->
+                </div>
+        </div>
+    </aside>
+    <main class="column right">
          <div class="container">
-            <!-- <div class="playTurns">players turns</div> -->
+            <div class="playTurns">Player X Turn...</div>
             <div class="game-board">
                 <div class="row">
                     <div class="cell" id="1"></div>
@@ -49,10 +64,10 @@
         </div>
     </main>
 </div>
-   <!-- <footer>
+   <footer>
        <div>Created with &hearts; by <span class="name">Bedour</span></div>
-   </footer> -->
-    <!-- JS linkes-->
+   </footer>
+    <!-- JS linkes -->
     <script
     src="https://code.jquery.com/jquery-3.4.1.js"
     integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
