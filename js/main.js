@@ -23,7 +23,7 @@ const $winCases = [
 ];
 
 /*------------------------------------------------------------*/
-
+//$rounds = prompt("Please enter rounds", "3");
 const myCallback = function(){
     if(checkForWin() === true){
         for(let i=1; i<=9 ; i++){
