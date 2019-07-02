@@ -4,6 +4,10 @@ console.log('Hello JS');
 let $playerX = [];
 let $playerO = [];
 let $xTurn = true;
+let $xScore = 0;
+let $oScore = 0;
+let $round = 1;
+let $winner;
 const $winCases = [
     //rows
     [1,2,3],
@@ -27,13 +31,17 @@ const myCallback = function(){
             $id.off();
         }
     }
-    else if(isGameOver() === true)
+    else if(isGameOver() === true) {
         console.log('Game Over');
+        for(let i=1; i<=9 ; i++){
+            const $id = $(`#${i}`);
+            $id.off();
+        }
+    }
 };
 
 //Create click event for each cell ONLY for once
 const start = function(){
-    console.log('X turn');
     for(let i=1; i<=9 ; i++){
         const $id = $(`#${i}`);
         //Set data 'clicked' for the clicked cells 
@@ -55,6 +63,8 @@ const start = function(){
         $id.one('click', myCallback); 
     };
 }
+console.log('Round: ' +$round);
+console.log('X turn');
 start();
 /*------------------------------------------------------------*/
 
@@ -73,7 +83,7 @@ const checkForWin = function(){
                     if ($winCases[i].includes(index1) === true){
                         $counterX++;
                         if($counterX === 3){
-                            winner('X');
+                            roundWinner('X');
                             return true;
                         }
                     } 
@@ -81,7 +91,7 @@ const checkForWin = function(){
                     if ($winCases[i].includes(index2) === true){
                         $counterO++; 
                         if($counterO === 3){
-                            winner('O');
+                            roundWinner('O');
                             return true;
                         }
                     }     
@@ -95,12 +105,29 @@ const checkForWin = function(){
 }//function
 
 
-//function to dispaly winner
-const winner = function(win){
-    if(win === 'X')
-    console.log('X wins'); //should be animated css
-    else if(win === 'O')
-    console.log('O wins');
+//function to dispaly each round winner
+const roundWinner = function(win){
+    if(win === 'X'){
+        $xScore++;
+        console.log('X wins'); //should be animated css
+    }
+    else if(win === 'O'){
+        $oScore++;
+        console.log('O wins');
+    }
+    console.log('x score: '+ $xScore);
+    console.log('o score: '+ $oScore);
+}
+
+//the winner (of all rounds)
+const winner = function(){
+    if($xScore > $oScore)
+    $winner = 'X';
+    if($xScore < $oScore)
+    $winner = 'O';
+    if($xScore === $oScore)
+    $winner = 'tie';
+    console.log('THE WINNER IS: ' +winner);
 }
 
 //finction to check if the game is over
@@ -118,18 +145,25 @@ const isGameOver = function(){
     return true;
 };
 
-$('.reset').click(function(){
-    console.log('reset button clicked');
+$('.newRound').click(function(){
+    console.log('newRound button clicked');
     $playerX = [];
     $playerO = [];
-    $xTurn = true;
+    $round++;
     for(let i=1; i<=9 ; i++){
         const $id = $(`#${i}`);
         if($id.data('clicked')){
-            $id.removeClass('x');
-            $id.removeClass('o');
+            if($id.hasClass('x')){
+                $id.removeClass('x');
+            }
+            if($id.hasClass('o')){
+                $id.removeClass('o');
+            }
             $id.prop('click', null);
             $id.data('clicked', false);
         }
     };
+    $xTurn = true;
+    console.log('Round: ' +$round);
+    console.log('X turn');
 });

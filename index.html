@@ -11,13 +11,22 @@
 </head>
 <body>
     <header>
-            <h1>Tic Tac Toe Game!</h1>
+            <h1>Tic Tac Toe</h1>
     </header>
+    <div class="clearfix">
+    <!-- <aside class="leftColumn">
+        <h2>Game board</h2>
+        <div class="round">Round: </div>
+        <div class="roundNumber"></div>
+        <div class="playerX-name">X: </div>
+        <div class="playerX-score">Score: </div>
+        <div class="playerO-name">O: </div>
+        <div class="playerO-score">Score: </div>
+        <div class="winner"></div>
+    </aside> -->
     <main>
          <div class="container">
-            <!-- <button id="playerX">X</button>
-            <button id="playerO">O</button> -->
-
+            <!-- <div class="playTurns">players turns</div> -->
             <div class="game-board">
                 <div class="row">
                     <div class="cell" id="1"></div>
@@ -35,13 +44,14 @@
                     <div class="cell" id="9"></div>
                 </div>
             </div>
-            <button class="reset" onclick="start()">Reset</button>
+            <button class="newRound" onclick="start()">Next Round</button>
+            <button class="newGame" onclick="location.reload();">New Game</button>
         </div>
     </main>
-
-   <footer>
-       
-   </footer>
+</div>
+   <!-- <footer>
+       <div>Created with &hearts; by <span class="name">Bedour</span></div>
+   </footer> -->
     <!-- JS linkes-->
     <script
     src="https://code.jquery.com/jquery-3.4.1.js"
