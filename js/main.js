@@ -1,6 +1,6 @@
 console.log('Hello JS');
 
-//Players
+//Declaration section
 let $playerX = [];
 let $playerO = [];
 let $xTurn = true;
@@ -24,14 +24,17 @@ const $winCases = [
 
 /*------------------------------------------------------------*/
 const myCallback = function(){
+    //disable the click events when there is a winner
     if(checkForWin() === true){
         for(let i=1; i<=9 ; i++){
             const $id = $(`#${i}`);
             $id.off();
         }
     }
+    //disable the click events when tie
     else if(isGameOver() === true) {
-        console.log('Game Over');
+        alert('tie...');
+        console.log('Game Over: tie');
         for(let i=1; i<=9 ; i++){
             const $id = $(`#${i}`);
             $id.off();
@@ -44,9 +47,9 @@ const start = function(){
     $('.newRound').hide();
     for(let i=1; i<=9 ; i++){
         const $id = $(`#${i}`);
-        //Set data 'clicked' for the clicked cells 
         $id.click(function(){
           if($id.hasClass('x') === false && $id.hasClass('o') === false){
+            // Set data 'clicked' for the clicked cells 
             $id.data('clicked', true);
             if($xTurn === true){
                 $id.addClass('x');
@@ -101,7 +104,7 @@ const checkForWin = function(){
                             roundWinner('O');
                             return true;
                         }
-                    }     
+                    } 
             }//inner for loop
         //to make sure that the counter begins with zero for each $winCases[i] iteration
          $counterX = 0;
@@ -118,7 +121,7 @@ const roundWinner = function(win){
         $xScore++;
         $('.scoreX').text(`X Score : ${$xScore}`);
         console.log('X wins');
-        alert('x wins the round!')
+        alert('x wins the round!');
         if(winner() === true)
         return;
         $('.newRound').show();
@@ -168,7 +171,7 @@ const isGameOver = function(){
         }
     }
     //if all cells are clicked = the board is full = the game is over
-    if($counter === 9){
+    if($counter === 9 && winner() === true){
         $('.newRound').show();
         return true;
     }
