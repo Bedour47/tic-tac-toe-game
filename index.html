@@ -6,7 +6,6 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Tic Tac Toe</title>
     <link rel="shortcut icon" href="favicon.ico">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css" />
     <link rel="stylesheet" type="text/css" href="css/animate.css">
     <link rel="stylesheet" type="text/css" href="css/style.css">
 </head>
@@ -17,17 +16,19 @@
     <div class="row">
     <aside class="column left">
         <h2 class="deepshadow">Score board</h2>
-        <div class="sideBoard round">Round #</div>
+        <div class="sideBoard round">Round <span>#</span></div>
             <div class="sideBoard">
                 <div>
-                    <div class="scoreX"> X Score : </div>
+                    <div class="scoreX"> <span>X</span> Score : </div>
                 </div>
             </div>
             <div class="sideBoard">
                 <div>
-                    <div class="scoreO">O Score : </div>
+                    <div class="scoreO"><span>O</span> Score : </div>
                 </div>
         </div>
+        <button class="newGame" onclick="location.reload();">New Game</button>
+        <button class="newRound" onclick="start()">Next Round</button>
     </aside>
     <main class="column right">
          <div class="container">
@@ -49,8 +50,6 @@
                     <div class="cell" id="9"></div>
                 </div>
             </div>
-            <button class="newRound" onclick="start()">Next Round</button>
-            <button class="newGame" onclick="location.reload();">New Game</button>
         </div>
     </main>
 </div>
@@ -62,8 +61,6 @@
     src="https://code.jquery.com/jquery-3.4.1.js"
     integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
     crossorigin="anonymous"></script>
-    <!-- jQuery Modal -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>
   <script src="js/main.js"></script>
 </body>
 </html>

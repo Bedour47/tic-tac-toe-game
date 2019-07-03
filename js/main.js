@@ -68,9 +68,9 @@ const start = function(){
         $id.one('click', myCallback); 
     };
 }
-let $rounds = prompt('Rounds?','3');
+let $rounds = prompt('How Many Rounds?','3');
 console.log('Round: ' +$roundsCounter);
-$('.round').text(`Round # ${$roundsCounter}`);
+$('.round').html(`Round <span>#</span> ${$roundsCounter}`);
 console.log('X turn');
 $('.playTurns').text(`Player X Turn`);
 start();
@@ -117,9 +117,9 @@ const checkForWin = function(){
 const roundWinner = function(win){
     if(win === 'X'){
         $xScore++;
-        $('.scoreX').text(`X Score : ${$xScore}`);
+        $('.scoreX').html(`<span>X</span> Score : ${$xScore}`);
         console.log('X wins');
-        $('.playTurns').text('x wins the round!');
+        $('.playTurns').text('X Won The Round!');
         
         if(winner() === true)
         return true;
@@ -127,9 +127,9 @@ const roundWinner = function(win){
     }
     else if(win === 'O'){
         $oScore++;
-        $('.scoreO').text(`O Score : ${$oScore}`);
+        $('.scoreO').html(`<span>O</span> Score : ${$oScore}`);
         console.log('O wins');
-        $('.playTurns').text('o wins the round!');
+        $('.playTurns').text('O Won The Round!');
         if(winner() === true)
         return true;
         $('.newRound').show();
@@ -149,13 +149,13 @@ const winner = function(){
         if($xScore === $oScore)
             $winner = ' ';
         if($winner === ' '){ //the whole game is tie (not for ecah round)
-            console.log('game tie...');
+            console.log('the game is a tie');
             $('.playTurns').text('Tie...');
-            alert('Tie...'); //game tie
+            alert('The Game is a Tie...'); //game tie
             return true;
         }
-        console.log('THE WINNER IS: ' +$winner);
-        alert(`THE WINNER IS: ${$winner}`);
+        console.log($winner+' won!!!');
+        alert(`${$winner} won!!!`);
         return true;
     }
     return false;
@@ -206,7 +206,7 @@ $('.newRound').click(function(){
     };
     $xTurn = true;
     console.log('Round: ' +$roundsCounter);
-    $('.round').text(`Round # ${$roundsCounter}`);
+    $('.round').html(`Round <span>#</span> ${$roundsCounter}`);
     console.log('X turn');
     $('.playTurns').text(`Player X Turn`);
 });
