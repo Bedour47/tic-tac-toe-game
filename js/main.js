@@ -33,8 +33,6 @@ const myCallback = function(){
     }
     //disable the click events when tie
     else if(isGameOver() === true) {
-        alert('tie...');
-        console.log('Game Over: tie');
         for(let i=1; i<=9 ; i++){
             const $id = $(`#${i}`);
             $id.off();
@@ -121,26 +119,28 @@ const roundWinner = function(win){
         $xScore++;
         $('.scoreX').text(`X Score : ${$xScore}`);
         console.log('X wins');
-        alert('x wins the round!');
+        $('.playTurns').text('x wins the round!');
+        
         if(winner() === true)
-        return;
+        return true;
         $('.newRound').show();
     }
     else if(win === 'O'){
         $oScore++;
         $('.scoreO').text(`O Score : ${$oScore}`);
         console.log('O wins');
-        alert('o wins the round!');
+        $('.playTurns').text('o wins the round!');
         if(winner() === true)
-        return;
+        return true;
         $('.newRound').show();
     }
     console.log('x score: '+ $xScore);
     console.log('o score: '+ $oScore);
+    return false;
 }
 
-//the winner (of all rounds)
-const winner = function(){ //maybe we need to check if the rounds are completed here??
+//the game winner (of all rounds)
+const winner = function(){
     if($roundsCounter >= $rounds){
         if($xScore > $oScore)
             $winner = 'X';
@@ -148,9 +148,10 @@ const winner = function(){ //maybe we need to check if the rounds are completed 
             $winner = 'O';
         if($xScore === $oScore)
             $winner = ' ';
-        if($winner === ' '){
-            console.log('tie...');
-            alert('tie...');
+        if($winner === ' '){ //the whole game is tie (not for ecah round)
+            console.log('game tie...');
+            $('.playTurns').text('Tie...');
+            alert('Tie...'); //game tie
             return true;
         }
         console.log('THE WINNER IS: ' +$winner);
@@ -160,23 +161,30 @@ const winner = function(){ //maybe we need to check if the rounds are completed 
     return false;
 }
 
-//finction to check if the game is over
+//finction to check if the game is over (tie)
 const isGameOver = function(){
     let $counter = 0;
     for(let i=1; i<=9 ; i++){
         const $id = $(`#${i}`);
-        //Check if the cell's data contains 'clicked' which mean the cell was clicked
+        //Check if the cell's data contains 'clicked'
         if($id.data('clicked')){
             $counter++;
         }
     }
     //if all cells are clicked = the board is full = the game is over
     if($counter === 9 && winner() === true){
+        $('.newRound').hide(); //if the whole game is over
+        return true;
+    }
+    if($counter === 9 && roundWinner() === false){
+        $('.playTurns').text('Tie...');
+        console.log('round tie');
         $('.newRound').show();
         return true;
     }
 };
 
+//New Round button :
 $('.newRound').click(function(){
     console.log('----------------------');
     $playerX = [];
