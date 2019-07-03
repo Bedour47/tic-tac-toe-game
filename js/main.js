@@ -6,7 +6,7 @@ let $playerO = [];
 let $xTurn = true;
 let $xScore = 0;
 let $oScore = 0;
-let $round = 1;
+let $roundsCounter = 1;
 let $winner;
 const $winCases = [
     //rows
@@ -68,8 +68,8 @@ const start = function(){
     };
 }
 let $rounds = prompt('Rounds?','3');
-console.log('Round: ' +$round);
-$('.round').text(`Round # ${$round}`);
+console.log('Round: ' +$roundsCounter);
+$('.round').text(`Round # ${$roundsCounter}`);
 console.log('X turn');
 $('.playTurns').text(`Player X Turn`);
 start();
@@ -119,6 +119,8 @@ const roundWinner = function(win){
         $('.scoreX').text(`X Score : ${$xScore}`);
         console.log('X wins');
         alert('x wins the round!')
+        if(winner() === true)
+        return;
         $('.newRound').show();
     }
     else if(win === 'O'){
@@ -126,6 +128,8 @@ const roundWinner = function(win){
         $('.scoreO').text(`O Score : ${$oScore}`);
         console.log('O wins');
         alert('o wins the round!');
+        if(winner() === true)
+        return;
         $('.newRound').show();
     }
     console.log('x score: '+ $xScore);
@@ -134,16 +138,23 @@ const roundWinner = function(win){
 
 //the winner (of all rounds)
 const winner = function(){ //maybe we need to check if the rounds are completed here??
-    if($round === $rounds){
+    if($roundsCounter >= $rounds){
         if($xScore > $oScore)
-             $winner = 'X';
+            $winner = 'X';
         if($xScore < $oScore)
-             $winner = 'O';
+            $winner = 'O';
         if($xScore === $oScore)
-        return console.log('tie');
-        console.log('THE WINNER IS: ' +winner);
+            $winner = ' ';
+        if($winner === ' '){
+            console.log('tie...');
+            alert('tie...');
+            return true;
+        }
+        console.log('THE WINNER IS: ' +$winner);
         alert(`THE WINNER IS: ${$winner}`);
+        return true;
     }
+    return false;
 }
 
 //finction to check if the game is over
@@ -167,8 +178,8 @@ $('.newRound').click(function(){
     console.log('----------------------');
     $playerX = [];
     $playerO = [];
-    if($round < $rounds)
-    $round++;
+    if($roundsCounter < $rounds)
+    $roundsCounter++;
     for(let i=1; i<=9 ; i++){
         const $id = $(`#${i}`);
         if($id.data('clicked')){
@@ -183,8 +194,8 @@ $('.newRound').click(function(){
         }
     };
     $xTurn = true;
-    console.log('Round: ' +$round);
-    $('.round').text(`Round # ${$round}`);
+    console.log('Round: ' +$roundsCounter);
+    $('.round').text(`Round # ${$roundsCounter}`);
     console.log('X turn');
     $('.playTurns').text(`Player X Turn`);
 });
