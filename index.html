@@ -6,6 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Tic Tac Toe</title>
     <link rel="shortcut icon" href="favicon.ico">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css" />
     <link rel="stylesheet" type="text/css" href="css/animate.css">
     <link rel="stylesheet" type="text/css" href="css/style.css">
 </head>
@@ -16,25 +17,24 @@
     <div class="row">
     <aside class="column left">
         <h2 class="deepshadow">Game board</h2>
-        <div class="wrapper">
+        <div class="sideBoard round">Round #</div>
+        <div class="sideBoard">
                 <div class="sideRow">
-                    <div class="sideColumn round">Round: </div>
-                    <!-- <div class="sideColumn roundNumber"></div> -->
-                </div>
-                <div class="sideRow">
-                    <div class="sideColumn playerX">X: </div>
+                    <div class="sideColumn"></div>
                     <!-- <div class="sideColumn playerX-name"></div> -->
                 </div>
                 <div class="sideRow">
-                    <div class="sideColumn playerX-score">Score: </div>
+                    <div class="sideColumn scoreX"> X Score : </div>
                     <!-- <div class="sideColumn playerX-score"></div> -->
                 </div>
+            </div>
+            <div class="sideBoard">
                 <div class="sideRow">
-                        <div class="sideColumn playerO">O: </div>
+                        <div class="sideColumn"></div>
                         <!-- <div class="sideColumn playerO-name"></div> -->
                 </div>
                 <div class="sideRow">
-                    <div class="sideColumn playerO-score">Score: </div>
+                    <div class="sideColumn scoreO">O Score : </div>
                     <!-- <div class="sideColumn playerO-score"></div> -->
                 </div>
         </div>
@@ -65,13 +65,15 @@
     </main>
 </div>
    <footer>
-       <div>Created with &hearts; by <span class="name">Bedour</span></div>
+       <!-- <div>Created with &hearts; by <span class="name">Bedour</span></div> -->
    </footer>
     <!-- JS linkes -->
     <script
     src="https://code.jquery.com/jquery-3.4.1.js"
     integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
     crossorigin="anonymous"></script>
+    <!-- jQuery Modal -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>
   <script src="js/main.js"></script>
 </body>
 </html>

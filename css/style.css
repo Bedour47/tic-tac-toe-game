@@ -110,13 +110,33 @@
       display: table;
       clear: both;
     }
+    .sideBoard {
+      background-color: #353333;
+      border: none;
+      color: white;
+      padding: 20px;
+      text-decoration: none;
+      display: inline-block;
+      margin: 6px 2px;
+      border-radius: 30px;
+      width: 220px;
+      font-family: "Avant Garde", Avantgarde, "Century Gothic", CenturyGothic, "AppleGothic", sans-serif;
+      font-size: 18px;
+      text-align: center;
+      text-transform: uppercase;
+    }
+    .round{
+      margin-top: 30px;
+    }
     .playTurns{
+      font-family: "Avant Garde", Avantgarde, "Century Gothic", CenturyGothic, "AppleGothic", sans-serif;
+      text-align: center;
       font-size: 24px;
       margin-top: 2%;
     }
     
     .game-board {
-      padding: 40px 0px 0px 0px;
+      padding: 28px 0px 0px 0px;
       width: 500px;
       height: 500px;
       position: relative;

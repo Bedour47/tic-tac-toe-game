@@ -23,7 +23,6 @@ const $winCases = [
 ];
 
 /*------------------------------------------------------------*/
-//$rounds = prompt("Please enter rounds", "3");
 const myCallback = function(){
     if(checkForWin() === true){
         for(let i=1; i<=9 ; i++){
@@ -42,29 +41,37 @@ const myCallback = function(){
 
 //Create click event for each cell ONLY for once
 const start = function(){
+    $('.newRound').hide();
     for(let i=1; i<=9 ; i++){
         const $id = $(`#${i}`);
         //Set data 'clicked' for the clicked cells 
         $id.click(function(){
-            $(this).data('clicked', true);
+          if($id.hasClass('x') === false && $id.hasClass('o') === false){
+            $id.data('clicked', true);
             if($xTurn === true){
-                $(this).addClass('x');
+                $id.addClass('x');
                 $playerX.push(i);
                 $xTurn = false;
+                $('.playTurns').text(`Player O Turn`);
                 console.log('O turn');
             }
             else if($xTurn === false){
                 $(this).addClass('o');
                 $playerO.push(i);
                 $xTurn = true;
+                $('.playTurns').text(`Player X Turn`);
                 console.log('X turn');
             }
+          }
         });
         $id.one('click', myCallback); 
     };
 }
+let $rounds = prompt('Rounds?','3');
 console.log('Round: ' +$round);
+$('.round').text(`Round # ${$round}`);
 console.log('X turn');
+$('.playTurns').text(`Player X Turn`);
 start();
 /*------------------------------------------------------------*/
 
@@ -109,11 +116,17 @@ const checkForWin = function(){
 const roundWinner = function(win){
     if(win === 'X'){
         $xScore++;
-        console.log('X wins'); //should be animated css
+        $('.scoreX').text(`X Score : ${$xScore}`);
+        console.log('X wins');
+        alert('x wins the round!')
+        $('.newRound').show();
     }
     else if(win === 'O'){
         $oScore++;
+        $('.scoreO').text(`O Score : ${$oScore}`);
         console.log('O wins');
+        alert('o wins the round!');
+        $('.newRound').show();
     }
     console.log('x score: '+ $xScore);
     console.log('o score: '+ $oScore);
@@ -121,13 +134,16 @@ const roundWinner = function(win){
 
 //the winner (of all rounds)
 const winner = function(){ //maybe we need to check if the rounds are completed here??
-    if($xScore > $oScore)
-    $winner = 'X';
-    if($xScore < $oScore)
-    $winner = 'O';
-    if($xScore === $oScore)
-    $winner = 'tie';
-    console.log('THE WINNER IS: ' +winner);
+    if($round === $rounds){
+        if($xScore > $oScore)
+             $winner = 'X';
+        if($xScore < $oScore)
+             $winner = 'O';
+        if($xScore === $oScore)
+        return console.log('tie');
+        console.log('THE WINNER IS: ' +winner);
+        alert(`THE WINNER IS: ${$winner}`);
+    }
 }
 
 //finction to check if the game is over
@@ -141,14 +157,17 @@ const isGameOver = function(){
         }
     }
     //if all cells are clicked = the board is full = the game is over
-    if($counter === 9)
-    return true;
+    if($counter === 9){
+        $('.newRound').show();
+        return true;
+    }
 };
 
 $('.newRound').click(function(){
     console.log('----------------------');
     $playerX = [];
     $playerO = [];
+    if($round < $rounds)
     $round++;
     for(let i=1; i<=9 ; i++){
         const $id = $(`#${i}`);
@@ -165,5 +184,7 @@ $('.newRound').click(function(){
     };
     $xTurn = true;
     console.log('Round: ' +$round);
+    $('.round').text(`Round # ${$round}`);
     console.log('X turn');
+    $('.playTurns').text(`Player X Turn`);
 });
