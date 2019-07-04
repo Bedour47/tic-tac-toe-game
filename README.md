@@ -2,10 +2,13 @@
 
 ## Project #1
 
-##Overview
+click [this](https://bedour47.github.io/tic-tac-toe-game/) to play the game!
 
+## Overview
 
-##Technologies used
+Tic Tac Toe is a game based on two players X and O, at the beginning players can set how many rounds they would like to play, then the game will be started. The program will keep track of the players' scores when they win each round. When they finish all the rounds the game winner will be announced.
+
+## Technologies used
 
 - HTML5
 - CSS
@@ -32,7 +35,7 @@ As a user I would like to:
 * not be able to continue playing once I win, lose, or tie for a round.
 * be able to play the next round.
 * not be able to play the next round in the middle of a round.
-* to be shown the scoreboard with a round number, player#1 score, and player#2 scores.
+* to be shown the scoreboard with a round number, player#1 and player#2 scores.
 * to be shown a message when I win, lose or tie when all rounds ended.
 * be able to start over a new game.
 
