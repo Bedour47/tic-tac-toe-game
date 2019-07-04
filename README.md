@@ -1,8 +1,8 @@
 # tic-tac-toe-game
 
-## Project #1
+## Installation
 
-click [here](https://bedour47.github.io/tic-tac-toe-game/) to play the game!
+No installation required, click [here](https://bedour47.github.io/tic-tac-toe-game/) to play the game!
 
 ## Overview
 
