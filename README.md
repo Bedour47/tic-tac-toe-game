@@ -2,7 +2,7 @@
 
 ## Project #1
 
-click [this](https://bedour47.github.io/tic-tac-toe-game/) to play the game!
+click [here](https://bedour47.github.io/tic-tac-toe-game/) to play the game!
 
 ## Overview
 
